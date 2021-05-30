@@ -1,11 +1,18 @@
 import React from "react";
+import { useState } from "react";
 
-function Filters() {
+function Filters({ onChangeType, onFindPetsClick }) {
+  const [option, setOption] = useState("all")
+  function handleChange(event) {
+    setOption(event.target.value)
+    onChangeType(event.target.value)
+    onFindPetsClick(event.target.value)
+  }
   return (
     <div className="ui form">
       <h3>Animal type</h3>
       <div className="field">
-        <select name="type" id="type">
+        <select name="type" id="type" value={option} onChange={handleChange} >
           <option value="all">All</option>
           <option value="cat">Cats</option>
           <option value="dog">Dogs</option>
